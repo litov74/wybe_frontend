@@ -8,8 +8,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:test_project/main.dart';
-import 'package:test_project/screens/startup_screen.dart';
+import 'package:wybe_latest/main.dart';
+import 'package:wybe_latest/screens/startup_screen.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
