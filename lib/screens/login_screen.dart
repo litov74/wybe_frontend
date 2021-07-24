@@ -14,7 +14,7 @@ import "package:wybe_latest/models/user_model.dart";
 import 'package:wybe_latest/screens/multi3_screen.dart';
 import "package:wybe_latest/strings/strings.dart";
 
-String fullLogoAsset = "assets/full_logo.jpg";
+String fullLogoAsset = "assets/full_logo.png";
 class Login_Screen extends StatefulWidget {
 
   @override
@@ -26,6 +26,32 @@ class Login_Screen extends StatefulWidget {
 
 class _Login_Screen extends State<Login_Screen>{
   final _formKey = GlobalKey<FormState>();
+  final ButtonStyle style_one =
+      ElevatedButton.styleFrom(
+          shadowColor: Colors.deepPurple,
+          primary: Colors.deepPurple,
+          onPrimary: Colors.deepPurple,
+          onSurface: Colors.deepPurple,
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(18.0),
+          side: BorderSide(color: Colors.deepPurple),
+
+        ),
+
+      );
+  final ButtonStyle style_two =
+  ElevatedButton.styleFrom(
+    shadowColor: Colors.white24,
+    primary: Colors.white24,
+    onPrimary: Colors.white24,
+    onSurface: Colors.white24,
+    shape: RoundedRectangleBorder(
+      borderRadius: new BorderRadius.circular(18.0),
+      side: BorderSide(color: Colors.white24),
+
+    ),
+
+  );
   @override
   void initState(){
     super.initState();
@@ -35,7 +61,8 @@ class _Login_Screen extends State<Login_Screen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.blueGrey,
       body: Form(
         child: Column(
           key: _formKey,
@@ -43,7 +70,7 @@ class _Login_Screen extends State<Login_Screen>{
           children: <Widget>[
 
             Container(
-              padding: EdgeInsets.only(left: 10.0, top: 40.0, right: 10.0, bottom: 30.0),
+              padding: EdgeInsets.only(left: 10.0, top: 40.0, right: 10.0, bottom: 50.0),
               child: Image.asset(fullLogoAsset, scale: 3,),
             ),
             Padding(
@@ -88,17 +115,19 @@ class _Login_Screen extends State<Login_Screen>{
                   Positioned(
                     right: 15,
                     child: ElevatedButton(
-                      onPressed: (){
+                      //style: style,
+                      style: style_one,
+                        child: Text(show),
                         // TODO: add password visibility
-                      },
-                      child: Text(show)
+                        onPressed: (){},
+
                     ),
                   ),
                 ],
               ),
             ),
             Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(left: 10.0, top: 30.0, right: 10.0, bottom: 10.0),
               child: Container(
                 height: 50,
                 width: double.infinity,
@@ -108,14 +137,9 @@ class _Login_Screen extends State<Login_Screen>{
                   //}),
                   //color: Colors.green,
                   // TODO: get out about color!
+                  style: style_one,
                   onPressed: (){
-                    if(_formKey.currentState!.validate()){
-                      Scaffold.of(context).showSnackBar(
-                        SnackBar(content: Text(loading)));
-                    }
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context)=>Multi3()));
+                    //onPressed for Submit button
                   },
                   child: Text(
                       submit,
@@ -140,12 +164,9 @@ class _Login_Screen extends State<Login_Screen>{
                   //}),
                   //color: Colors.green,
                   // TODO: get out about color!
+                  style: style_two,
                   onPressed: (){
-                    if(_formKey.currentState!.validate()){
-                      Scaffold.of(context).showSnackBar(
-                          SnackBar(content: Text(loading)));
-                    }
-
+                    // onPressed for Register button
                   },
                   child: Text(
                     register,

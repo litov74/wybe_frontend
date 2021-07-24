@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class User{
   final int id;
   final String name;
@@ -5,6 +7,8 @@ class User{
   final String status;
   final int friends;
   final int isRemember; //BOOl type is unsupported in SQLite, using int...
+  final String profilePicRoute;
+  final Array friendsArray; // actually friends array is an array of User models
 
   User({
     required this.id,
@@ -13,6 +17,8 @@ class User{
     required this.status,
     required this.friends,
     required this.isRemember,
+    required this.profilePicRoute,
+    required this.friendsArray
   });
 }
 
