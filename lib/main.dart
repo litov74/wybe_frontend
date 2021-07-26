@@ -1,4 +1,5 @@
 // GLOBAL DEPENDENCIES
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
@@ -12,8 +13,7 @@ String sql_statement = "CREATE TABLE user(id INTEGER PRIMARY KEY, name TEXT, pho
 // project entry point
 
 void main() async{
-  runApp(MyApp());
-  // running MyApp, then opening connection to DB. Hope, that connection won't be closed but I'm nut sure
+  runApp(EntryPoint());
   WidgetsFlutterBinding.ensureInitialized();
   final database = openDatabase(
     join(await getDatabasesPath(), "user_database.db"),
@@ -34,4 +34,26 @@ class MyApp extends StatelessWidget{
     );
   }
 
+}
+
+class EntryPoint extends StatefulWidget{
+  @override
+  _EntryPoint createState() => _EntryPoint();
+}
+
+class _EntryPoint extends State<EntryPoint>{
+  final Future<FirebaseApp> _init = Firebase.initializeApp();
+
+  @override
+  Widget build(BuildContext context){
+    return FutureBuilder(
+      future: _init,
+      builder: (context, snapshot){
+        if (snapshot.connectionState == ConnectionState.done){
+          return MyApp();
+        }
+        return MyApp(); // TODO: draw an ERROR SCREEN!
+      }
+    );
+  }
 }
