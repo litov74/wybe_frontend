@@ -10,7 +10,7 @@ import "package:wybe_latest/screens/auth_screen.dart";
 import 'package:wybe_latest/strings/values.dart';
 
 
-const String logoAsset = "assets/logo.png";
+const String logoAsset = "assets/custom_logo.png";
 
 
 // TODO: remove deprecated classes
@@ -110,8 +110,8 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
   }
 
   List<Color> colorList = [
-    Colors.blue,
-    Colors.red
+    Colors.lightBlue.shade300,
+    Colors.white
   ];
   List<Alignment> alignmentList = [
     Alignment.bottomLeft,
@@ -120,8 +120,8 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
     Alignment.topLeft
   ];
   int index = 0;
-  Color bottomColor = Colors.red;
-  Color topColor = Colors.blue;
+  Color bottomColor = Colors.white;
+  Color topColor = Colors.lightBlue.shade300;
   Alignment begin = Alignment.bottomLeft;
   Alignment end = Alignment.topRight;
 
@@ -129,7 +129,7 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 4000), (){
       setState(() {
-        bottomColor = Colors.blue;
+        bottomColor = Colors.lightBlue.shade300;
       });
 
     });
@@ -153,7 +153,7 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
             ),
           ),
           Positioned.fill(
-              child: Image.asset(logoAsset, scale: 2,)
+              child: Image.asset(logoAsset, scale: 1, )
           )
         ]
       )
