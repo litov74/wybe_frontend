@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:383508623434:android:9ccd7aa421a454cf67b6b3",
+        "mobilesdk_app_id": "1:383508623434:android:b0e0c1c3bd5926b967b6b3",
         "android_client_info": {
-          "package_name": "com.litov74.wybe"
+          "package_name": "com.example.test_project"
         }
       },
       "oauth_client": [

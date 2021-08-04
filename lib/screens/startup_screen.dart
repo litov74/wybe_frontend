@@ -2,7 +2,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-
+import 'package:logger/logger.dart';
 // LOCAL DEPENDENCIES (note: project rename may cause an error, be careful)
 import 'package:wybe_latest/screens/login_screen.dart';
 import "package:wybe_latest/strings/strings.dart";
@@ -10,7 +10,7 @@ import "package:wybe_latest/screens/auth_screen.dart";
 import 'package:wybe_latest/strings/values.dart';
 
 
-const String logoAsset = "assets/custom_logo.png";
+const String logoAsset = "assets/wybe.png";
 
 
 // TODO: remove deprecated classes
@@ -92,6 +92,8 @@ class AnimatedGradient extends StatefulWidget{
 
 class _AnimatedGradientState extends State<AnimatedGradient>{
 
+  var logger = Logger(); //unused
+
   @override
   void initState() {
     super.initState();
@@ -110,7 +112,7 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
   }
 
   List<Color> colorList = [
-    Colors.lightBlue.shade300,
+    Colors.pink.shade100,
     Colors.white
   ];
   List<Alignment> alignmentList = [
@@ -121,7 +123,7 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
   ];
   int index = 0;
   Color bottomColor = Colors.white;
-  Color topColor = Colors.lightBlue.shade300;
+  Color topColor = Colors.pink.shade100;
   Alignment begin = Alignment.bottomLeft;
   Alignment end = Alignment.topRight;
 
@@ -129,7 +131,7 @@ class _AnimatedGradientState extends State<AnimatedGradient>{
   Widget build(BuildContext context) {
     Future.delayed(const Duration(milliseconds: 4000), (){
       setState(() {
-        bottomColor = Colors.lightBlue.shade300;
+        bottomColor = Colors.pink.shade100;
       });
 
     });

@@ -14,7 +14,7 @@ import 'package:wybe_latest/screens/login_screen.dart';
 
 
 class Main_Screen extends StatefulWidget {
-  final User user;
+  final UserCredential user;
 
   const Main_Screen({required this.user});
 
@@ -36,7 +36,7 @@ class _Main_Screen extends State<Main_Screen>{
 
   @override
   void initState() {
-    _currentUser = widget.user;
+    _currentUser = widget.user.user!;
     super.initState();
   }
 

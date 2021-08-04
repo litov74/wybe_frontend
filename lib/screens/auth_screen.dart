@@ -100,7 +100,7 @@ class _Auth_Screen extends State<Auth_Screen> {
         (PhoneAuthCredential phoneAuthCredential) async {
 
       await auth.signInWithCredential(phoneAuthCredential);
-      print("Phone number automatically verified and user signed in: ${auth.currentUser.uid}");
+      print("Phone number automatically verified and user signed in: ${auth.currentUser!.uid}");
 
     };
     PhoneVerificationFailed verificationFailed =
@@ -144,7 +144,7 @@ class _Auth_Screen extends State<Auth_Screen> {
 
     try {
       final AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId,
+        verificationId: _verificationId!,
         smsCode: _smsController.text,
       );
 

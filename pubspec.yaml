@@ -17,12 +17,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   vibration: ^1.7.3
   web_socket_channel: ^1.1.0
-  firebase_core: "^0.7.0"
-  firebase_database: "^6.0.0"
-  firebase_auth: "^0.20.0+1"
+  firebase_core: "^1.4.0"
+  firebase_database:
+  firebase_auth: "^3.0.1"
   path: 1.8.0
   sqflite: 2.0.0+3
-  firebase_analytics: "^7.0.1"
+  logger:
+  firebase_analytics:
 
 
 dev_dependencies:
@@ -43,6 +44,7 @@ flutter:
     - assets/full_logo.png
     - assets/rounded_logo.png
     - assets/custom_logo.png
+    - assets/wybe.png
 
   # fonts:
   #   - family: Schyler

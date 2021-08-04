@@ -1,6 +1,13 @@
+import "package:logger/logger.dart";
+
+
 class Validator {
+
   static String? validateName({required String name}) {
+    var logger = Logger();
+    logger.d(name);
     if (name == null) {
+
       return null;
     }
     if (name.isEmpty) {
@@ -11,6 +18,8 @@ class Validator {
   }
 
   static String? validateEmail({required String email}) {
+    var logger = Logger();
+    logger.d(email);
     if (email == null) {
       return null;
     }
@@ -27,6 +36,8 @@ class Validator {
   }
 
   static String? validatePassword({required String password}) {
+    var logger = Logger();
+    logger.d(password);
     if (password == null) {
       return null;
     }

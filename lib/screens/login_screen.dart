@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/widgets.dart";
+import "package:logger/logger.dart";
 
 // LOCAL DEPENDENCIES (note: project rename may cause an error, be careful)
 import "package:wybe_latest/models/user_model.dart";
@@ -18,7 +19,7 @@ import "package:wybe_latest/strings/strings.dart";
 import "package:wybe_latest/screens/main_screen.dart";
 import "package:wybe_latest/net/fire_auth.dart";
 
-String fullLogoAsset = "assets/rounded_logo.png";
+String fullLogoAsset = "assets/wybe.png";
 class Login_Screen extends StatefulWidget {
   const Login_Screen({Key? key}) : super(key: key);
 
@@ -31,9 +32,16 @@ class Login_Screen extends StatefulWidget {
 
 class _Login_Screen extends State<Login_Screen> {
   final _formKey = GlobalKey<FormState>();
-
+  var logger = Logger();
+  bool _obscureText = true;
   final login_controller = TextEditingController();
   final passw_controller = TextEditingController();
+
+  void obscure(){
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
 
   @override
@@ -53,19 +61,18 @@ class _Login_Screen extends State<Login_Screen> {
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(18.0),
           side: BorderSide(color: Colors.deepPurple),
-
         ),
-
       );
+
   final ButtonStyle style_two =
   ElevatedButton.styleFrom(
-    shadowColor: Colors.white24,
-    primary: Colors.white24,
-    onPrimary: Colors.white24,
-    onSurface: Colors.white24,
+    shadowColor: Colors.deepPurple,
+    primary: Colors.white,
+    onPrimary: Colors.white,
+    onSurface: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: new BorderRadius.circular(18.0),
-      side: BorderSide(color: Colors.white24),
+      side: BorderSide(color: Colors.deepPurple),
 
     ),
   );
@@ -81,28 +88,45 @@ class _Login_Screen extends State<Login_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    Future<FirebaseApp> _initializeFirebase() async {
-      FirebaseApp firebaseApp = await Firebase.initializeApp();
-      User? user = FirebaseAuth.instance.currentUser;
+    //Future<FirebaseApp> _initializeFirebase() async {
+    //  FirebaseApp firebaseApp = await Firebase.initializeApp();
+    //  User? user = FirebaseAuth.instance.currentUser;
+    //  logger.d("login_screen.dart 88 ${user}");
+    //  if (user != null) {
+    //    Navigator.of(context).pushReplacement(
+    //      MaterialPageRoute(
+    //        builder: (context) => Main_Screen(
+    //          user: user,
+    //        ),
+    //      ),
+    //    );
+    //  }
+    //  return firebaseApp;
+    //}
+    FirebaseAuth auth = FirebaseAuth.instance;
 
-      if (user != null) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => Main_Screen(
-              user: user,
-            ),
-          ),
-        );
-      }
-      return firebaseApp;
-    }
+    //auth.authStateChanges().listen((User? user) {
+    //  if(user != null){
+    //    Navigator.of(context).pushReplacement(
+    //     MaterialPageRoute(
+    //       builder: (context) => Main_Screen(
+    //         user: user,
+    //         ),
+    //       ),
+    //     );
+    //  }
+    //});
+
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
       body: FutureBuilder(
-        future: _initializeFirebase(),
+        //future: _initializeFirebase(),
         builder: (context, snapshot)
         {
+          var logger = Logger();
+          logger.d(snapshot.connectionState);
           if (snapshot.connectionState == ConnectionState.done) {
             return Column(
                 key: _formKey,
@@ -118,16 +142,19 @@ class _Login_Screen extends State<Login_Screen> {
                     padding: EdgeInsets.all(10),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: Colors.white,
                         borderRadius: new BorderRadius.circular(10.0),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 15, right: 15, top: 5),
                         child: TextFormField(
+
+                          cursorColor: Colors.deepPurple,
                           controller: login_controller,
                           decoration: InputDecoration(
-                            border: InputBorder.none,
+                            border: OutlineInputBorder(),
                             labelText: login,
+                            fillColor: Colors.deepPurple,
                           ),
                         ),
                       ),
@@ -140,7 +167,7 @@ class _Login_Screen extends State<Login_Screen> {
                       children: <Widget>[
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Colors.white,
                             borderRadius: new BorderRadius.circular(10.0),
                           ),
                           child: Padding(
@@ -149,25 +176,32 @@ class _Login_Screen extends State<Login_Screen> {
                                   top: 5),
                               child: TextFormField(
                                   controller: passw_controller,
-                                  obscureText: true,
+                                  obscureText: _obscureText,
+
                                   decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      labelText: password
+                                      border: OutlineInputBorder(),
+                                      labelText: password,
+
                                   )
                               )
                           ),
                         ),
                         Positioned(
-                          right: 15,
+                          right: 25,
                           child: ElevatedButton(
                             //style: style,
                             style: style_one,
-                            child: Text(show,),
+                            child: Icon(Icons.remove_red_eye_outlined, color: Colors.white,),
 
                             // TODO: add password visibility
                             // TODO: fix missing text
-                            onPressed: () {
-
+                            onPressed: (){
+                              obscure();
+                              //if(_obscureText){
+                              //  Text(show, style: TextStyle(color: Colors.white),);
+                              //}else{
+                              //  Text(show, style: TextStyle(color: Colors.white),);
+                              //}
                             },
 
                           ),
@@ -194,16 +228,29 @@ class _Login_Screen extends State<Login_Screen> {
                           //);
 
                           if (passw_controller.text != "" && login_controller.text != "") {
+                            logger.d("login_screen 198 ${_formKey.currentState}");
                             if (_formKey.currentState!.validate()) {
-                              User? user = await FireAuth
-                                  .signInUsingEmailPassword(
-                                  email: login_controller.text,
-                                  password: passw_controller.text,
-                                  context: context
-                              );
-                              if (user != null) {
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Main_Screen(user: user)),);
+
+                              //User user = await FireAuth.signInUsingEmailAndPassword(email: login_controller.text, password: passw_controller.text, BuildContext: context);
+                              //User user = await FireAuth.signInUsingEmailPassword(email: login_controller.text, password: passw_controller.text, context: context);
+                              //logger.d("login_screen 205 ${user}");
+                              //if (user != null) {
+                              //  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Main_Screen(user: user)),);
+                              //}
+                              try {
+                                UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                    email: login_controller.text,
+                                    password: passw_controller.text
+                                );
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Main_Screen(user: userCredential)));
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'user-not-found') {
+                                  logger.d("user not found ${e}");
+                                } else if (e.code == 'wrong-password') {
+                                  logger.d("wrong password ${e}");
+                                }
                               }
+
                             }
 
 
@@ -246,7 +293,7 @@ class _Login_Screen extends State<Login_Screen> {
                         },
                         child: Text(
                           register,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.deepPurple),
                         ),
 
                       ),
@@ -255,7 +302,7 @@ class _Login_Screen extends State<Login_Screen> {
                 ],
               );
 
-         }else{
+          }else{
             return AlertDialog(content: Text(superAchtung),);
           }
         },
