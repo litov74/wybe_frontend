@@ -3,9 +3,10 @@ import "package:flutter/widgets.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:wybe/screens/main_screen.dart';
 import 'package:wybe/screens/register_screen.dart';
 import 'package:wybe/strings/strings.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 String fullLogoAsset = "assets/wybe.png";
 class Login_Screen extends StatefulWidget {
@@ -77,6 +78,14 @@ class _Login_Screen extends State<Login_Screen> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth.instance.authStateChanges().listen((User? user){
+      if(user != null){
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Main_Screen()));
+      }
+    });
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
