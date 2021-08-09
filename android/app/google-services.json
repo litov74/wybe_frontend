@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "383508623434",
+    "project_id": "wybe-31ae2",
+    "storage_bucket": "wybe-31ae2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383508623434:android:ac581bfc2ebbdfa267b6b3",
+        "android_client_info": {
+          "package_name": "com.litov74.wybe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383508623434-d68s3kruc7nqch0os82p1107ssq7ma7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx0sAz8PvFaPt6CwaKj9Mh0kmh1b86dSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383508623434-d68s3kruc7nqch0os82p1107ssq7ma7i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "383508623434-j97ncpojljqcfg4vki8g2j0frvjljtpn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.litov74.wybe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
