@@ -3,10 +3,12 @@ import "package:flutter/widgets.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:wybe/firebase/firebase_signin.dart';
 import 'package:wybe/screens/main_screen.dart';
 import 'package:wybe/screens/register_screen.dart';
 import 'package:wybe/strings/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 String fullLogoAsset = "assets/wybe.png";
 class Login_Screen extends StatefulWidget {
@@ -20,6 +22,7 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_Screen extends State<Login_Screen> {
+  FirebaseAuth auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   var logger = Logger();
   bool _obscureText = true;
@@ -31,8 +34,6 @@ class _Login_Screen extends State<Login_Screen> {
       _obscureText = !_obscureText;
     });
   }
-
-
 
   @override
   void dispose() {
@@ -67,14 +68,11 @@ class _Login_Screen extends State<Login_Screen> {
     ),
   );
 
-
   @override
   void initState(){
     super.initState();
     // TODO: connect DB to check "remember me" state
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +166,15 @@ class _Login_Screen extends State<Login_Screen> {
                 child: ElevatedButton(
                   style: style_one,
                   onPressed: () async {
-
+                    if(login_controller.text != "" && passw_controller.text != ""){
+                      var k = Firebase_SignIn().signInWithEmail(login_controller.text, passw_controller.text);
+                      var currentUser = FirebaseAuth.instance.currentUser;
+                      logger.d(currentUser.uid);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Main_Screen()));
+                    }
                   },
                   child: Text(
                     submit,
@@ -195,7 +201,7 @@ class _Login_Screen extends State<Login_Screen> {
                     register,
                     style: TextStyle(color: Colors.deepPurple),
                   ),
-            ),
+                ),
               ),
             ),
           ],
