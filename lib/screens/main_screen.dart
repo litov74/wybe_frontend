@@ -3,6 +3,9 @@ import "package:flutter/widgets.dart";
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:wybe/screens/logout_screen.dart';
+
+import 'login_screen.dart';
 
 
 
@@ -57,17 +60,13 @@ class _Main_Screen extends State<Main_Screen>{
                   style: style_two,
                   onPressed: () {
                     var logger = Logger();
-                    logger.d(FirebaseAuth.instance.currentUser.displayName);
-                    logger.d(FirebaseAuth.instance.currentUser.email);
-                    logger.d(FirebaseAuth.instance.currentUser.emailVerified);
-                    logger.d(FirebaseAuth.instance.currentUser.isAnonymous);
-                    logger.d(FirebaseAuth.instance.currentUser.metadata);
-                    logger.d(FirebaseAuth.instance.currentUser.phoneNumber);
-                    logger.d(FirebaseAuth.instance.currentUser.photoURL);
-                    logger.d(FirebaseAuth.instance.currentUser.providerData);
                     logger.d(FirebaseAuth.instance.currentUser.uid);
                     FirebaseAuth.instance.signOut();
-
+                    logger.d(FirebaseAuth.instance.currentUser.uid);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Logout_Screen()));
                   },
                   child: Text(
                     "Выпилиться",
