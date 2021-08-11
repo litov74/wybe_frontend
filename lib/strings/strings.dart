@@ -14,3 +14,4 @@ String missedData = "Пожалуйста, введите логин и паро
 String superAchtung = "Ошибка. Повторите попытку позже";
 String internalUseOnlyFirebaseErrorNotFound = "user-not-found";
 String internalUseOnlyFirebaseWrongData = "wrong-password";
+String logout = "Выход успешен!";
