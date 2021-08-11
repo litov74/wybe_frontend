@@ -167,7 +167,7 @@ class _Login_Screen extends State<Login_Screen> {
                   style: style_one,
                   onPressed: () async {
                     if(login_controller.text != "" && passw_controller.text != ""){
-                      var k = Firebase_SignIn().signInWithEmail(login_controller.text, passw_controller.text);
+                      Firebase_SignIn().signInWithEmail(login_controller.text, passw_controller.text);
                       var currentUser = FirebaseAuth.instance.currentUser;
                       logger.d(currentUser.uid);
                       Navigator.pushReplacement(
