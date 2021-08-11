@@ -92,7 +92,10 @@ class _Main_Screen extends State<Main_Screen>{
                                           children: <Widget>[
                                             Row(
                                               children: <Widget>[
-                                                condition('${snapshot.data[index].isOnline}')==true? new Icon(Icons.adb_rounded, color: Colors.green,) : new Icon(Icons.adb_rounded, color: Colors.green,),
+                                                if(snapshot.data[index].isOnline==true)
+                                                  new Icon(Icons.adb_rounded, color: Colors.green,)
+                                                else
+                                                  new Icon(Icons.adb_rounded, color: Colors.red,),
                                                 SizedBox(width: 5,),
                                                 Text(snapshot.data[index].name, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20,fontFamily: 'Roboto-Black'),)
                                               ],
