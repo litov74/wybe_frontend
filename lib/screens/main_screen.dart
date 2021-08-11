@@ -50,7 +50,7 @@ class _Main_Screen extends State<Main_Screen>{
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.deepPurple,
-        title: Image.asset(logo, fit: BoxFit.cover), //TODO: get out how it looks
+        title: Image.asset(logo, scale: 10), //TODO: get out how it looks
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
