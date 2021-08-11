@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:wybe/screens/startup_screen.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 String sql_statement = "CREATE TABLE user(id INTEGER PRIMARY KEY, name TEXT, phone TEXT, status TEXT, friends INTEGER, isRemember INTEGER)";
 
@@ -48,6 +49,7 @@ class _EntryPoint extends State<EntryPoint>{
 
   @override
   void initState(){
+    final databaseReference = FirebaseDatabase.instance.reference();
     initializeFlutterFire();
     super.initState();
   }
