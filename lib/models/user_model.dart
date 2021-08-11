@@ -14,6 +14,7 @@ class userModelItem{
   final int rating;
   final int gender;
   final String city;
+  final String location;
 
   userModelItem({
     required this.id,
@@ -28,7 +29,8 @@ class userModelItem{
     required this.email,
     required this.rating,
     required this.city,
-    required this.gender
+    required this.gender,
+    required this.location
   });
 
   factory userModelItem.fromJson(Map<dynamic,dynamic> parsedJson){
@@ -45,7 +47,8 @@ class userModelItem{
         email: parsedJson['email'],
         rating: parsedJson['rating'],
         city: parsedJson['city'],
-        gender: parsedJson['gender']
+        gender: parsedJson['gender'],
+        location: parsedJson['location']
     );
   }
 

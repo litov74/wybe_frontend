@@ -49,7 +49,6 @@ class _EntryPoint extends State<EntryPoint>{
 
   @override
   void initState(){
-    final databaseReference = FirebaseDatabase.instance.reference();
     initializeFlutterFire();
     super.initState();
   }
