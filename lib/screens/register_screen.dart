@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:wybe/firebase/firebase_register.dart';
 import 'package:wybe/strings/strings.dart';
 
 import 'login_screen.dart';
+import 'main_screen.dart';
 
 
 
@@ -42,6 +45,9 @@ class _Register_Screen extends State<Register_Screen>{
     login_controller.dispose();
     passw_controller.dispose();
     passw_again_controller.dispose();
+    nick_controller.dispose();
+    gender_controller.dispose();
+    city_controller.dispose();
     super.dispose();
   }
 
@@ -276,7 +282,22 @@ class _Register_Screen extends State<Register_Screen>{
                       child: ElevatedButton(
                         style:style_one,
                         onPressed: () async {
-
+                          if(login_controller.text != "" &&
+                          passw_controller.text != "" &&
+                          passw_again_controller.text != "" &&
+                          nick_controller.text != "" &&
+                          gender_controller.text != "" &&
+                          city_controller.text != ""){
+                            Firebase_Register().registerWithEmail(login_controller.text, passw_controller.text);
+                            var currentUser = FirebaseAuth.instance.currentUser;
+                            logger.d(currentUser.uid);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Main_Screen()
+                              )
+                            );
+                          }
                         },
                         child: Text(
                           submit,
