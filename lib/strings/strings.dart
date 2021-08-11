@@ -15,3 +15,4 @@ String superAchtung = "Ошибка. Повторите попытку позж�
 String internalUseOnlyFirebaseErrorNotFound = "user-not-found";
 String internalUseOnlyFirebaseWrongData = "wrong-password";
 String logout = "Выход успешен!";
+String mainScreen = "Главная";

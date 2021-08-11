@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:wybe/screens/logout_screen.dart';
+import 'package:wybe/strings/strings.dart';
 
 import 'login_screen.dart';
 
-
+String logo = "assets/wybe.png";
 
 class Main_Screen extends StatefulWidget {
 
@@ -44,37 +45,17 @@ class _Main_Screen extends State<Main_Screen>{
 
   @override
   Widget build(BuildContext context) {
+    var logger = Logger();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.deepPurple,
+        title: Image.asset(logo, fit: BoxFit.cover), //TODO: get out how it looks
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: style_two,
-                  onPressed: () {
-                    var logger = Logger();
-                    logger.d(FirebaseAuth.instance.currentUser.uid);
-                    FirebaseAuth.instance.signOut();
-                    logger.d(FirebaseAuth.instance.currentUser.uid);
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Logout_Screen()));
-                  },
-                  child: Text(
-                    "Выпилиться",
-                    style: TextStyle(color: Colors.deepPurple),
-                  ),
-                ),
-              ),
-            ),
+
           ]
       ),
     );
